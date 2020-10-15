@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Nosotros | Impacto Tecnologico</title>
+    <link rel="stylesheet" href="../assets/css/boostrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"> -->
+
+    <script type="text/javascript" src="../assets/js/login.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid background-color">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <center>
+                        <img src="../assets/img/avatar.png" class="menu-img">
+                    </center>
+
+                    <div class="menu">
+                        <ul>
+                            <li><a href="home.html">Inicio</a></li>
+                            <li><a href="#" id="clienteList" class="active">Clientes</a></li>
+                            <li><a href="registro_cuentas.html">Cuentas</a></li>
+                            <li><a href="transacciones.html">Transacciones</a></li>
+                            <li onclick="closedLogin()"><a href="#" id="close">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+                            <!-- form start -->
+                            <form id="clienteForm">
+                                <div class="form-header">
+                                    <h3 class="form-title"><i class="fa fa-user"></i> Registar cliente</h3>
+                                </div>
+                                <div id="msgContactSubmit" class="hidden"></div>
+                                <div class="form-body my-4">
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="to">Nombre:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[A-Za-z ]*" title="No se aceptan numeros, solo letras " />
+                                        </div>
+                                        <div class="col">
+                                            <label for="to">Apellido:</label>
+                                            <input type="text" class="form-control" id="apellido" name="apellido" required required pattern="[A-Za-z ]*" title="No se aceptan numeros, solo letras " />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="sexo_id" class="control-label">Sexo</label>
+                                            <select class="form-control" id="sexo_id" name="sexo">
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-footer ">
+                                    <div class="form-row ">
+                                        <button type="submit" id="clienteboton" class="btn btn-success">Registrar cliente! </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+                            <!-- form start -->
+                            <form id="buscraTransaccForm">
+                                <div class="form-header">
+                                    <h3 class="form-title"><i class="fa fa-user"> </i>Buscar cliente</h3>
+                                    <div id="msgTablacliente" class="hidden"></div>
+                                </div>
+                                <div class="form-body my-4">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="id_bcliente" placeholder="Ingrese nombre o apellido o id ">
+                                        </div>
+                                        <div>
+                                            <button id="buscacuenta" class="btn btn-success">Actualizar registros</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row ">
+                                    <table id="tabla_cliente" class="table table-bordered table-hover table-wrapper-scroll-y ">
+                                        <thead>
+                                            <tr class="table-primary ">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Apellidos</th>
+                                                <th scope="col">Sexo</th>
+                                                <th scope="col">fecha Regsitro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablabody_cliente">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- /.container -->
+
+                </div>
+                <!-- /.container -->
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../controlador/formControler.js"></script>
+    <script src="../assets/js/paginate.js"></script>
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+ -->
+
+</body>
+
+</html>

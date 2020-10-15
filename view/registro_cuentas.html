@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formación | Impacto Tecnologico</title>
+
+    <link rel="stylesheet" href="../assets/css/boostrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <script type="text/javascript" src="../assets/js/login.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid background-color">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <center>
+                        <img src="../assets/img/avatar.png" class="menu-img">
+                    </center>
+
+                    <div class="menu">
+                        <ul>
+                            <li><a href="home.html">Inicio</a></li>
+                            <li><a href="registro_clientes.html">Clientes</a></li>
+                            <li><a href="#" id="cuentaList" class="active">Cuentas</a></li>
+                            <li><a href="transacciones.html">Transacciones</a></li>
+                            <li onclick="closedLogin()"><a href="#" id="close">Cerrar sesión</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+
+                            <!-- form start -->
+                            <form id="cuentasForm">
+                                <div class="form-header">
+                                    <h3 class="form-title"><i class="fa fa-user"></i> Registar cuenta</h3>
+                                </div>
+                                <div id="msgContactSubmitcuenta" class="hidden"></div>
+                                <div class="form-body my-4">
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="to">N° de cuneta:</label>
+                                            <input type="number" class="form-control" id="n_cuenta" min="0" onKeyDown="if(this.value.length==14 && event.keyCode!=8) return false;" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="tcuenta_id" class="control-label">Tipo de cuenta</label>
+                                            <select class="form-control" id="tcuenta_id">
+                                                    <option value="Ahorro">Ahorro</option>
+                                                    <option value="Corriente">Corrriente</option>
+                                                </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="to">ID cliente:</label>
+                                            <input type="text" class="form-control" id="cliente_id" required pattern="[0-9]+" title="No se aceptan letras, solo numeros ">
+                                        </div>
+                                        <div class="col">
+                                            <label for="to">Monto:</label>
+                                            <input type="number" class="form-control" id="monto" min="0" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-footer col-md-4">
+                                    <div class="row">
+                                        <button type="submit" class="btn btn-success">Registrar cuenta!</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+                            <!-- form start -->
+                            <form id="buscraTransaccForm">
+                                <div class="form-header">
+                                    <h3 class="form-title"><i class="fa fa-user"></i>Buscar cuenta</h3>
+                                    <div id="msgTablacuenta" class="hidden"></div>
+                                </div>
+                                <div class="form-body my-4">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="el_bcuenta" placeholder="Buscar cuenta ">
+                                        </div>
+                                        <div>
+                                            <button id="buscacuenta" class="btn btn-success">Actualizar registros</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <table id="tabla_cuenta" class="table table-bordered table-hover table-wrapper-scroll-y ">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <th scope="col">Numero</th>
+                                                <th scope="col">Tipo</th>
+                                                <th scope="col">ID cliente</th>
+                                                <th scope="col">Monto </th>
+                                                <th scope="col">fecha Regsitro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabla_body_cuenta">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- /.container -->
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="../controlador/formControler.js"></script>
+    <script src="../assets/js/paginate.js"></script>
+</body>
+
+</html>

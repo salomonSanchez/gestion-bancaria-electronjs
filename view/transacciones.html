@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Contacto | Impacto Tecnologico</title>
+
+    <link rel="stylesheet" href="../assets/css/boostrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <script type="text/javascript" src="../assets/js/login.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid background-color">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <center>
+                        <img src="../assets/img/avatar.png" class="menu-img">
+                    </center>
+
+                    <div class="menu">
+                        <ul>
+                            <li><a href="home.html">Inicio</a></li>
+                            <li><a href="registro_clientes.html">Clientes</a></li>
+                            <li><a href="registro_cuentas.html">Cuentas</a></li>
+                            <li><a href="#" class="active">Transacciones</a></li>
+                            <li onclick="closedLogin()"><a href="#" id="close">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+
+                            <!-- form start -->
+                            <form id="transaccionForm">
+
+                                <div class="form-header">
+                                    <h3 class="form-title"><i class="fa fa-user"></i> Realizar Transaccion</h3>
+                                </div>
+                                <div id="msgContactSubmittransacc" class="hidden"></div>
+                                <div class="form-body my-4">
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label id="labelmonto">Monto:</label>
+                                            <input type="number" class="form-control" id="tmonto" min="1" required>
+                                        </div>
+                                        <div class="col">
+                                            <label id="labelcuenta">N° de cuneta:</label>
+                                            <input type="number" class="form-control" id="ncuenta" min="0" onKeyDown="if(this.value.length==14 && event.keyCode!=8) return false;" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col col-md-4">
+                                            <label for="transaccion_id" class="control-label">Tipo de Transaccion</label>
+                                            <select class="form-control" id="transaccion_id" name="transaccion">
+                                                    <option value="0">Deposito</option>
+                                                    <option value="1">Retiro</option>
+                                                </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-footer col-md-4">
+                                    <div class="form-row ">
+                                        <button type="submit" class="btn btn-success">Realizar transaccion !</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.container -->
+                    <div class="container">
+                        <div class="card h-100 jumbotron my-4">
+                            <!-- form start -->
+                            <form id="buscraTransaccForm">
+                                <div class="form-header">
+                                    <h3 class="form-title"><i id="t_nbcuenta" class="fa fa-user"></i>Buscar cuenta</h3>
+                                    <div id="msgTablaTransaccion" class="hidden"></div>
+                                </div>
+                                <div class="form-body my-4">
+
+                                    <div class="form-row">
+
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="nbcuenta" placeholder="Numero de cuneta " required>
+                                        </div>
+
+                                        <div>
+                                            <button id="buscacuenta" class="btn btn-success">Buscar cuenta!</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <table id="Tabla_Transaccion" class="table table-bordered table-hover table-wrapper-scroll-y ">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <th scope="col">Numero</th>
+                                                <th scope="col">Monto</th>
+                                                <th scope="col">Movimiento</th>
+                                                <th scope="col">fecha Regsitro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablabody">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                    <script src="../controlador/formControler.js"></script>
+                    <script src="../assets/js/paginate.js"></script>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
