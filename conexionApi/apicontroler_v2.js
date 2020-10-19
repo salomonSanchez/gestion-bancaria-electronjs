@@ -54,9 +54,14 @@ async function CrearClientev2(cliente, elemento) {
 
 }
 
-function getClientev2(cliente_id) {
+async function getClientev2(cliente_id) {
+    var token = await loginToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
+
     var requestOptions = {
         method: 'GET',
+        headers: myHeaders,
         redirect: 'follow'
     };
     const cliente = fetch(`https://apigesbanc.herokuapp.com/api/v1/showclient/${cliente_id}`, requestOptions)
@@ -82,7 +87,11 @@ async function getListClientesv2() {
     return clientes
 }
 
-function crearCuentav2(cuenta, elemento) {
+async function crearCuentav2(cuenta, elemento) {
+    var token = await loginToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
+
     var urlencoded = new URLSearchParams();
     urlencoded.append("number", cuenta.numero);
     urlencoded.append("type", cuenta.tipo);
@@ -91,6 +100,7 @@ function crearCuentav2(cuenta, elemento) {
 
     var requestOptions = {
         method: 'POST',
+        headers: myHeaders,
         body: urlencoded,
         redirect: 'follow'
     };
@@ -103,8 +113,13 @@ function crearCuentav2(cuenta, elemento) {
 }
 
 async function getCuentav2(cuenta_numero) {
+    var token = await loginToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
+
     var requestOptions = {
         method: 'GET',
+        headers: myHeaders,
         redirect: 'follow'
     };
     const cuenta = await fetch(`https://apigesbanc.herokuapp.com/api/v1/showaccount/${cuenta_numero}`, requestOptions)
@@ -129,9 +144,14 @@ async function getListCuentasv2() {
     return clientes
 }
 
-function getSaldoCuentav2(cuenta_numero) {
+async function getSaldoCuentav2(cuenta_numero) {
+    var token = await loginToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
+    console.log("login token: ", token.token)
     var requestOptions = {
         method: 'GET',
+        headers: myHeaders,
         redirect: 'follow'
     };
     const saldo = fetch(`https://apigesbanc.herokuapp.com/api/v1/checkbalance/${cuenta_numero}`, requestOptions)
@@ -164,13 +184,14 @@ async function DepositoTransaccionv2(transaccion, elemento) {
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token.token}`);
 
+
     var urlencoded = new URLSearchParams();
     urlencoded.append("account_id", transaccion.numero_cuenta);
     urlencoded.append("amount", transaccion.monto);
 
     var requestOptions = {
         method: 'POST',
-        myHeaders,
+        headers: myHeaders,
         body: urlencoded,
         redirect: 'follow'
     };
@@ -183,7 +204,10 @@ async function DepositoTransaccionv2(transaccion, elemento) {
 
 }
 
-function RetirosTransaccionv2(transaccion, elemento) {
+async function RetirosTransaccionv2(transaccion, elemento) {
+    var token = await getToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
 
     var urlencoded = new URLSearchParams();
     urlencoded.append("account_id", transaccion.numero_cuenta);
@@ -191,6 +215,7 @@ function RetirosTransaccionv2(transaccion, elemento) {
 
     var requestOptions = {
         method: 'POST',
+        headers: myHeaders,
         body: urlencoded,
         redirect: 'follow'
     };
@@ -202,15 +227,21 @@ function RetirosTransaccionv2(transaccion, elemento) {
         .catch(error => console.log('error', error));
 }
 
-function ListarTransaccion2(cuenta_numero) {
+async function ListarTransaccion2(cuenta_numero) {
+    var token = await getToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token.token}`);
+
     var requestOptions = {
         method: 'GET',
+        headers: myHeaders,
         redirect: 'follow'
     };
-    const saldo = fetch(`https://servicedesposit2020.herokuapp.com/api/transaction/List/${cuenta_numero}`, requestOptions)
+    const transacc = fetch(`https://microservicetransactionv2.herokuapp.com/api/v2/transaction/List/${cuenta_numero}`, requestOptions)
         .then(response => response.json())
         .catch(error => console.log('error', error))
-    return saldo
+
+    return transacc
 }
 
 

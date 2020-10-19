@@ -103,7 +103,6 @@ if (cuentaForm) {
         try {
             e.preventDefault()
             var datos = apiControlv2.getClientev2(parseInt(cuentaId_Cliente.value));
-
             datos.then(res => {
                 if (res.id) {
                     if (cuentaNumero.value.length == 14) {
@@ -235,6 +234,7 @@ if (transaccionForm) {
             tipo_transaccion: transaccionTipo.value,
         };
         //apiControlv2.actualizarMontov2(transaccion.numero_cuenta, transaccion, clientMsgSubmit);
+        console.log("data retiros: ", transaccion)
         apiControlv2.RetirosTransaccionv2(transaccion, clientMsgSubmit);
         llenarTabla(transaccionNcuenta.value, transaccionMonto)
         transaccionMonto.style.color = '';
@@ -244,7 +244,7 @@ if (transaccionForm) {
         e.preventDefault();
         var numero_Cuenta = document.querySelector("#nbcuenta");
         var his_TransaccForm = document.querySelector("#buscraTransaccForm");
-        console.log("lo que busca: ", numero_Cuenta.value)
+        //console.log("lo que busca: ", numero_Cuenta.value)
         llenarTabla(numero_Cuenta.value, numero_Cuenta)
         his_TransaccForm.reset()
     };
@@ -252,12 +252,12 @@ if (transaccionForm) {
     function llenarTabla(numero_cuenta, lb_ncuenta) {
         var mensajerror = document.querySelector("#msgTablaTransaccion");
         var h_transaccion = apiControlv2.ListarTransaccion2(parseInt(numero_cuenta));
+
         agregarMensaje(mensajerror, "Buscando ...")
         paginarTabla('#nbcuenta', '#Tabla_Transaccion');
         h_transaccion.then(res => {
             if (res.length !== 0) {
                 tablaBodyTransac.innerHTML = "";
-                console.log("lo que trae: ", res)
                 mensajerror.textContent = "";
                 for (var i = 0; i < res.length; i++) {
                     var row = `<tr> 
