@@ -148,7 +148,6 @@ async function getSaldoCuentav2(cuenta_numero) {
     var token = await loginToken()
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token.token}`);
-    console.log("login token: ", token.token)
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -158,25 +157,6 @@ async function getSaldoCuentav2(cuenta_numero) {
         .then(response => response.json())
         .catch(error => console.log('error', error))
     return saldo
-}
-
-function actualizarMontov2(numero_cuenta, transaccion, elemento) {
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("amount", transaccion.monto);
-    urlencoded.append("operacion", transaccion.tipo);
-
-    var requestOptions = {
-        method: 'PUT',
-        body: urlencoded,
-        redirect: 'follow'
-    };
-
-    fetch(`https://apigesbanc.herokuapp.com/api/v1/updateamount/${numero_cuenta}`, requestOptions, elemento)
-        .then(response => {
-            validarRespuestaServidor(response, elemento)
-        })
-        .catch(error => console.log('error', error));
-
 }
 
 async function DepositoTransaccionv2(transaccion, elemento) {
@@ -220,7 +200,7 @@ async function RetirosTransaccionv2(transaccion, elemento) {
         redirect: 'follow'
     };
 
-    fetch("https://servicedesposit2020.herokuapp.com/api/transaction/retirement", requestOptions, elemento)
+    fetch("https://microservicetransactionv2.herokuapp.com/api/v2/transaction/retirement", requestOptions, elemento)
         .then(response => {
             validarRespuestaServidor(response, elemento)
         })
@@ -285,7 +265,6 @@ module.exports = {
     getClientev2,
     getListClientesv2,
     crearCuentav2,
-    actualizarMontov2,
     getCuentav2,
     getSaldoCuentav2,
     DepositoTransaccionv2,

@@ -224,6 +224,7 @@ if (transaccionForm) {
         };
         //apiControlv2.actualizarMontov2(transaccion.numero_cuenta, transaccion, clientMsgSubmit);
         apiControlv2.DepositoTransaccionv2(transaccion, clientMsgSubmit);
+        console.log("data deposit: ", transaccion)
         llenarTabla(transaccionNcuenta.value, transaccionMonto)
     }
 
@@ -264,7 +265,7 @@ if (transaccionForm) {
                                     <td>${res[i].account_id}</td>
                                     <td>${res[i].amount}</td>
                                     <td>${res[i].movement}</td>
-                                    <td>${res[i].Created}</td>
+                                    <td>${res[i].createdAt}</td>
                                 </tr>`
                     tablaBodyTransac.innerHTML += row;
                 }
